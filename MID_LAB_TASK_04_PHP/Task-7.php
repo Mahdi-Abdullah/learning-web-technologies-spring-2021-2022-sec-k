@@ -16,4 +16,17 @@
 		echo "<br>";
 	}
 
+	echo "<br>";
+	$value = 65;
+
+	for ($i=0; $i < 3; $i++) { 
+		for ($j=0; $j <= $i; $j++) {
+			$char = chr($value);
+			echo $char.' ';
+			$value = $value + 1;
+		}
+		
+		echo "<br>";
+	}
+
 ?>
