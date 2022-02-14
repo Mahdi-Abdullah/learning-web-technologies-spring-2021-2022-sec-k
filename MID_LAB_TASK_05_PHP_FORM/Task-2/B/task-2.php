@@ -24,7 +24,7 @@
 			<table>
 				<tr>
 					<td>
-						<input type="text" name="name" value=""/>
+						<input type="email" name="name" value=""/>
 						<?php echo 'Email: '.$email ?>
 					</td>
 				</tr>
