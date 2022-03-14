@@ -1,0 +1,3 @@
+ABDULLAH AL MAHDI|Admin|mahdiabdullah1234@gmail.com|1234|Male|2002-05-13|admin|ProfileImage.jfif|Active
+ABDULLAH AL MAHDI|LordBlack|mahdiabdullah1234@gmail.com|1234|Male|2002-05-13|seller|ProfileImage.jfif|Active
+a|a|battleaxewarhammer@gmail.com|1|Male|2022-03-08|customer|268137842_1219365038552536_5037338744102525105_n.jpg|Block
