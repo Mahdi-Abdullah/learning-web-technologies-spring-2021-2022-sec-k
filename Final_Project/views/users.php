@@ -1,5 +1,6 @@
 <?php 
 	require_once('header.php');
+	require('../models/users_tbl.php');
 ?>
 
 <!DOCTYPE html>
@@ -51,31 +52,25 @@
 						<td><b style="font-size: 25px; font-family: calibri; color: white;">Actions</b><br></td>
 					</tr>
 
-					<?php 
-						$file = fopen('../models/users.txt', 'r');
-				
-						while (!feof($file)) {
-							$user = fgets($file);
-							if($user == null){
-								break;
-							}
+					<?php
+						$row = mysqli_fetch_assoc(getAlluser()); 				
+						while ($row == mysqli_fetch_assoc(getAlluser())) {
 							
-							$userArray = explode("|", $user);
 					?>
 
 					<tr style="font-size: 20px; font-family: calibri; color: white;">
-						<td><?=$userArray[0]?></td>
-						<td><?=$userArray[1]?></td>
-						<td><?=$userArray[2]?></td>
-						<td><?=$userArray[3]?></td>
-						<td><?=$userArray[4]?></td>
-						<td><?=$userArray[5]?></td>
-						<td><?=$userArray[6]?></td>
-						<td><?=$userArray[7]?></td>
-						<td><?=$userArray[8]?></td>
+						<td><?=$row['name']?></td>
+						<td><?=$row['username']?></td>
+						<td><?=$row['email']?></td>
+						<td><?=$row['password']?></td>
+						<td><?=$row['gender']?></td>
+						<td><?=$row['DOB']?></td>
+						<td><?=$row['Account_Type']?></td>
+						<td><?=$row['Picture']?></td>
+						<td><?=$row['Status']?></td>
 						<td>
-							<a href="../views/editUser.php?id=<?=$userArray[1]?>" style="font-size: 20px; font-family: calibri; color: white; text-decoration: none;"> <b>EDIT</b> </a> | 
-					    	<a href="../views/deleteUser.php?id=<?=$userArray[1]?>" style="font-size: 20px; font-family: calibri; color: white; text-decoration: none;"> <b>DELETE</b> </a> 
+							<a href="../views/editUser.php?id=<?=$row['username']?>" style="font-size: 20px; font-family: calibri; color: white; text-decoration: none;"> <b>EDIT</b> </a> | 
+					    	<a href="../views/deleteUser.php?id=<?=$row['username']?>" style="font-size: 20px; font-family: calibri; color: white; text-decoration: none;"> <b>DELETE</b> </a> 
 						</td>
 						
 					</tr>

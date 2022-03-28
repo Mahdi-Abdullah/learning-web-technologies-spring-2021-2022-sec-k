@@ -1,5 +1,6 @@
 <?php 
 	require_once('header.php');
+	require('../models/users_tbl.php');
 
 	$id = $_GET['id'];
 

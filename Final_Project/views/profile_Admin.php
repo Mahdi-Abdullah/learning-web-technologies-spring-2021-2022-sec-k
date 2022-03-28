@@ -54,22 +54,22 @@
 							<b style="font-size: 25px; font-family: calibri; color: white;">Account Type</b><br><hr>
 						</td>
 						<td align="center">
-							<b style="font-size: 25px; font-family: calibri; color: white;"><?=$_SESSION['current_user'][0]?></b><br><hr>
-							<b style="font-size: 25px; font-family: calibri; color: white;"><?=$_SESSION['current_user'][1]?></b><br><hr>
-							<b style="font-size: 25px; font-family: calibri; color: white;"><?=$_SESSION['current_user'][2]?></b><br><hr>
-							<b style="font-size: 25px; font-family: calibri; color: white;"><?=$_SESSION['current_user'][3]?></b><br><hr>
-							<b style="font-size: 25px; font-family: calibri; color: white;"><?=$_SESSION['current_user'][4]?></b><br><hr>
-							<b style="font-size: 25px; font-family: calibri; color: white;"><?=$_SESSION['current_user'][5]?></b><br><hr>
-							<b style="font-size: 25px; font-family: calibri; color: white;"><?=$_SESSION['current_user'][6]?></b><br><hr>
+							<b style="font-size: 25px; font-family: calibri; color: white;"><?=$_SESSION['current_user']['name']?></b><br><hr>
+							<b style="font-size: 25px; font-family: calibri; color: white;"><?=$_SESSION['current_user']['username']?></b><br><hr>
+							<b style="font-size: 25px; font-family: calibri; color: white;"><?=$_SESSION['current_user']['email']?></b><br><hr>
+							<b style="font-size: 25px; font-family: calibri; color: white;"><?=$_SESSION['current_user']['password']?></b><br><hr>
+							<b style="font-size: 25px; font-family: calibri; color: white;"><?=$_SESSION['current_user']['gender']?></b><br><hr>
+							<b style="font-size: 25px; font-family: calibri; color: white;"><?=$_SESSION['current_user']['DOB']?></b><br><hr>
+							<b style="font-size: 25px; font-family: calibri; color: white;"><?=$_SESSION['current_user']['Account_Type']?></b><br><hr>
 						</td>
 						<td valign="Top" align="right">
-							<img src="../assets/<?=$_SESSION['current_user'][7]?>" width="200px" height="240px"><br>
-							<b style="font-size: 20px; font-family: calibri; color: white;"><?=$_SESSION['current_user'][7]?></b>
+							<img src="../assets/<?=$_SESSION['current_user']['Picture']?>" width="200px" height="240px"><br>
+							<b style="font-size: 20px; font-family: calibri; color: white;"><?=$_SESSION['current_user']['Picture']?></b>
 						</td>
 					</tr>
 					<tr>
 						<td colspan="3" align="center">
-							<br><a href="../views/EditProfile.php?id=<?=$_SESSION['current_user'][1]?>"><input type="submit" name="submit" value="Edit Profile" style="font-size: 25px;"></a>
+							<br><a href="../views/EditProfile.php?id=<?=$_SESSION['current_user']['username']?>"><input type="submit" name="submit" value="Edit Profile" style="font-size: 25px;"></a>
 						</td>
 					</tr>
 				</table>

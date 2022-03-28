@@ -1,5 +1,6 @@
 <?php 
 	session_start();
+	require('../models/users_tbl.php');
 	
 	if(isset($_REQUEST['submit'])){
 		
@@ -33,11 +34,12 @@
 
 		if($name != null && $email != null && $username != null && $password != null && $conPass != null && $date != null){
 			if ($password == $conPass) {
-				$user = "\n".$name."|".$username."|".$email."|".$password."|".$gender."|".$date."|".$accountType."|".$_FILES['pic']['name']."|"."Active";
-				$file = fopen('../models/users.txt', 'a');
-				fwrite($file, $user);
-				fclose($file);
-				header('location: ../views/login.php');
+				if (isUserTaken($username) == true) {
+					register($name, $username, $email, $password, $gender, $date, $accountType, $_FILES['pic']['name'], 'Active');
+					header('location: ../views/login.php');
+				}else{
+					echo "This username is taken";
+				}
 			}else{
 				echo "passwords does not match";
 			}

@@ -1,55 +1,49 @@
 <?php 
 	session_start();
+	require('../models/users_tbl.php');
 
 	if(isset($_REQUEST['submit'])){
 		
 		$username = $_REQUEST['username'];
 		$password = $_REQUEST['password'];
 
-		if($username != null && $password != null){
-
-			$file = fopen('../models/users.txt', 'r');
-			while(!feof($file)){
-
-				$user = fgets($file);
-				$userArry = explode('|', $user);
+		if($username != null && $password != null) {
 				
-				if(trim($userArry[1]) == $username && trim($userArry[3]) == $password){
-					if (trim($userArry[8]) == "Active") {
-						if (trim($userArry[6] == 'admin')) {
+				if(login($username,$password) == true) {
+					if (userInfo($username)['Status'] == "Active") {
+
+						if (userInfo($username)['Account_Type'] == 'admin') {
 							$_SESSION['status'] = true;
-							$_SESSION['current_user'] = $userArry;
+							$_SESSION['current_user'] = userInfo($username);
 							setcookie('status', 'true', time()+3600, '/');
 
 							header('location: ../views/profile_Admin.php');
 						}
-						else if (trim($userArry[6] == 'customer')) {
+						else if (userInfo($username)['Account_Type'] == 'customer') {
 							$_SESSION['status'] = true;
-							$_SESSION['current_user'] = $userArry;
+							$_SESSION['current_user'] = userInfo($username);
 							setcookie('status', 'true', time()+3600, '/');
 
 							header('location: ../views/profile_Customer.php');
 						}
-						else if (trim($userArry[6] == 'seller')) {
+						else if (userInfo($username)['Account_Type'] == 'seller') {
 							$_SESSION['status'] = true;
-							$_SESSION['current_user'] = $userArry;
+							$_SESSION['current_user'] = userInfo($username);
 							setcookie('status', 'true', time()+3600, '/');
 
 							header('location: ../views/profile_Seller.php');
 						}
-						else if (trim($userArry[6] == 'customer service')) {
+						else if (userInfo($username)['Account_Type'] == 'customer service') {
 							$_SESSION['status'] = true;
-							$_SESSION['current_user'] = $userArry;
+							$_SESSION['current_user'] = userInfo($username);
 							setcookie('status', 'true', time()+3600, '/');
 
 							header('location: ../views/profile_Customer_Service.php');
 						}
 					}else{
 						echo "Your account is blocked! or ";
-						break;
 					}
 				}
-			}
 
 			echo "invalid username/password";
 
