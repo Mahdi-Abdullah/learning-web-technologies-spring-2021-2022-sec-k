@@ -4,15 +4,8 @@
 
 	$id = $_GET['id'];
 
-	$file = fopen('../models/users.txt', 'r');
+	$row = userInfo($id);
 
-	while (!feof($file)) {
-		$user = fgets($file);
-		$userArray = explode('|', $user);
-		if($userArray[1] == $id){
-			break;
-		}
-	}
 ?>
 
 <!DOCTYPE html>
@@ -69,27 +62,27 @@
 								<b style="font-size: 26px; font-family: calibri; color: white;">Account Type</b><br><hr>
 							</td>
 							<td align="center">
-								<input type="text" name="name" value="<?=$_SESSION['current_user'][0]?>" style="font-size: 22px; font-family: calibri;"/></b><br><hr>
-								<input type="text" name="username" value="<?=$_SESSION['current_user'][1]?>" style="font-size: 22px; font-family: calibri;"/></b><br><hr>
-								<input type="email" name="email" value="<?=$_SESSION['current_user'][2]?>" style="font-size: 22px; font-family: calibri;"/></b><br><hr>
-								<input type="password" name="password" value="<?=$_SESSION['current_user'][3]?>" style="font-size: 22px; font-family: calibri;"/></b><br><hr>
+								<input type="text" name="name" value="<?=$row['name']?>" style="font-size: 22px; font-family: calibri;"/></b><br><hr>
+								<input type="text" name="username" value="<?=$row['username']?>" style="font-size: 22px; font-family: calibri;"/></b><br><hr>
+								<input type="email" name="email" value="<?=$row['email']?>" style="font-size: 22px; font-family: calibri;"/></b><br><hr>
+								<input type="password" name="password" value="<?=$row['password']?>" style="font-size: 22px; font-family: calibri;"/></b><br><hr>
 
-								<input type="radio" name="gender" value="Male"<?php if($_SESSION['current_user'][4] == "Male") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Male</b>
-								<input type="radio" name="gender" value="Female"<?php if($_SESSION['current_user'][4] == "Female") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Female</b>
-								<input type="radio" name="gender" value="Other" <?php if($_SESSION['current_user'][4] == "Other") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Other</b><br><hr>
+								<input type="radio" name="gender" value="Male"<?php if($row['gender'] == "Male") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Male</b>
+								<input type="radio" name="gender" value="Female"<?php if($row['gender'] == "Female") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Female</b>
+								<input type="radio" name="gender" value="Other" <?php if($row['gender'] == "Other") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Other</b><br><hr>
 
-								<input type="date" name="date" value="<?=$_SESSION['current_user'][5]?>" style="font-size: 22px; font-family: calibri;"/></b><br><hr>
+								<input type="date" name="date" value="<?=$row['DOB']?>" style="font-size: 22px; font-family: calibri;"/></b><br><hr>
 
-								<input type="radio" name="accType" value="admin"<?php if($_SESSION['current_user'][6] == "admin") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Admin</b>
-								<input type="radio" name="accType" value="customer"<?php if($_SESSION['current_user'][6] == "customer") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Customer</b>
-								<input type="radio" name="accType" value="seller"<?php if($_SESSION['current_user'][6] == "seller") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Seller</b>
-								<input type="radio" name="accType" value="customer service"<?php if($_SESSION['current_user'][4] == "customer service") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Seller service</b><hr>
+								<input type="radio" name="accType" value="admin"<?php if($row['Account_Type'] == "admin") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Admin</b>
+								<input type="radio" name="accType" value="customer"<?php if($row['Account_Type'] == "customer") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Customer</b>
+								<input type="radio" name="accType" value="seller"<?php if($row['Account_Type'] == "seller") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Seller</b>
+								<input type="radio" name="accType" value="customer service"<?php if($row['Account_Type'] == "customer service") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Seller service</b><hr>
 							</td>
 							<td valign="Top" align="right">
-								<img src="../assets/<?=$_SESSION['current_user'][7]?>" width="200px" height="240px"><br>
-								<b style="font-size: 20px; font-family: calibri; color: white;"><?=$_SESSION['current_user'][7]?></b>
+								<img src="../assets/<?=$row['Picture']?>" width="200px" height="240px"><br>
+								<b style="font-size: 20px; font-family: calibri; color: white;"><?=$row['Picture']?></b>
 								<p align="right"><input type="file" name="pic" style="color: white; font-size: 12px;"></p>
-								<input type="hidden" name="p" value="<?=$_SESSION['current_user'][7]?>">
+								<input type="hidden" name="p" value="<?=$row['Picture']?>">
 							</td>
 						</tr>
 						<tr>

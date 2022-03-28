@@ -53,9 +53,9 @@
 					</tr>
 
 					<?php
-						$row = mysqli_fetch_assoc(getAlluser()); 				
-						while ($row == mysqli_fetch_assoc(getAlluser())) {
-							
+						$result = getAlluser();
+						 while ($row = mysqli_fetch_assoc($result)) {
+						 	
 					?>
 
 					<tr style="font-size: 20px; font-family: calibri; color: white;">

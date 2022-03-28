@@ -1,5 +1,7 @@
 <?php 
 	session_start();
+	require('../models/users_tbl.php');
+
 	
 	if(isset($_REQUEST['update'])){
 		
@@ -38,22 +40,8 @@
 
 		if($name != null && $email != null && $username != null && $password != null && $date != null){
 			
-			$file = fopen('../models/users.txt', 'r');
-			$updatedContent = "";
+			editUser($name, $username, $email, $password, $gender, $date, $accountType, $picture, 'Active');
 
-			while(!feof($file)){
-				$line = fgets($file);
-				$user = explode('|', $line);
-				
-				if($user[1] == $id){
-					$line = $name."|".$username."|".$email."|".$password."|".$gender."|".$date."|".$accountType."|".$picture."\n";
-				}
-				$updatedContent .= $line;
-				
-			}
-
-			$file = fopen('../models/users.txt', 'w');
-			fwrite($file, $updatedContent);
 			session_start();
 			setcookie('status', 'true', time()-10, '/');
 			header('location: ../views/login.php');
