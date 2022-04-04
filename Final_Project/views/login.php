@@ -39,12 +39,12 @@
 						</tr>
 						<tr align="center">
 							<td colspan="2">
-								<b style="font-size: 25px; font-family: calibri; color: white;">Username:</b> <input type="text" name="username" value=""/> <br>
+								<b style="font-size: 25px; font-family: calibri; color: white;">Username:</b> <input id="name" type="text" name="username" value="" onblur="user()" /> <br>
 							</td>
 						</tr>
 						<tr align="center">
 							<td colspan="2">
-								<b style="font-size: 25px; font-family: calibri; color: white;">Password :</b> <input type="password" name="password" value=""/> <br>
+								<b style="font-size: 25px; font-family: calibri; color: white;">Password :</b> <input id="pass" type="password" name="password" value="" onblur="pass()" /> <br>
 							</td>
 						</tr>
 						<tr align="center">
@@ -85,5 +85,19 @@
 			</td>
 		</tr>
 	</table>
+	<script>
+		function user(){
+			let username = document.getElementById('name').value;
+			if (username == "") {
+				alert("Please enter your username");
+			}
+		}
+		function pass(){
+			/*let password = document.getElementById('pass').value;
+			if (password == "") {*/
+				alert("Please enter your password");
+			/*}*/
+		}
+	</script>
 </body>
 </html>

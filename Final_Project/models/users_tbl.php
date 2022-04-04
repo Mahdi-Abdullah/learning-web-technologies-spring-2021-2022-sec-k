@@ -42,7 +42,7 @@
 	}
 	function editUser($name, $username, $email, $password, $gender, $dob, $type, $pic, $status) {
 		$con = mysqli_connect('localhost', 'root', '', 'final_project');
-		$sql = "update users set name='{$name}', username='{$username}', email='{$email}', password='{$password}', gender='{$gender}', dob='{$dob}', type='{$type}', pic='{$pic}', status='{$status}'";
+		$sql = "update users set name='{$name}', username='{$username}', email='{$email}', password='{$password}', gender='{$gender}', dob='{$dob}', Account_Type='{$type}', Picture='{$pic}', Status='{$status}' where username='{$username}'";
 
 		if (mysqli_query($con, $sql)) {
 			return true;

@@ -1,5 +1,6 @@
 <?php 
 	require_once('header.php');
+	require('../models/newCars_tbl.php');
 ?>
 
 <!DOCTYPE html>
@@ -39,6 +40,7 @@
 						<td colspan="10"><b style="font-size: 35px; font-family: calibri; color: white;">New Car <br> <hr></b></td>
 					</tr>
 					<tr>
+						<td><b style="font-size: 25px; font-family: calibri; color: white;">Id</b><br></td>
 						<td><b style="font-size: 25px; font-family: calibri; color: white;">Name</b><br></td>
 						<td><b style="font-size: 25px; font-family: calibri; color: white;">Seller</b><br></td>
 						<td><b style="font-size: 25px; font-family: calibri; color: white;">Price</b><br></td>
@@ -48,26 +50,20 @@
 					</tr>
 
 					<?php 
-						$file = fopen('../models/newCars.txt', 'r');
-				
-						while (!feof($file)) {
-							$user = fgets($file);
-							if($user == null){
-								break;
-							}
-							
-							$userArray = explode("|", $user);
+						$result = getAllcars();
+						 while ($row = mysqli_fetch_assoc($result)) {
 					?>
 
 					<tr style="font-size: 20px; font-family: calibri; color: white;">
-						<td><?=$userArray[0]?></td>
-						<td><?=$userArray[1]?></td>
-						<td><?=$userArray[2]?></td>
-						<td><?=$userArray[3]?></td>
-						<td><?=$userArray[4]?></td>
+						<td><?=$row['id']?></td>
+						<td><?=$row['name']?></td>
+						<td><?=$row['seller']?></td>
+						<td><?=$row['price']?></td>
+						<td><?=$row['picture']?></td>
+						<td><?=$row['status']?></td>
 						<td>
-							<a href="../views/editNewCar.php?id=<?=$userArray[1]?>" style="font-size: 20px; font-family: calibri; color: white; text-decoration: none;"> <b>EDIT</b> </a> | 
-					    	<a href="../views/deleteNewCar.php?id=<?=$userArray[1]?>" style="font-size: 20px; font-family: calibri; color: white; text-decoration: none;"> <b>DELETE</b> </a> 
+							<a href="../views/editNewCar.php?id=<?=$row['id']?>" style="font-size: 20px; font-family: calibri; color: white; text-decoration: none;"> <b>EDIT</b> </a> | 
+					    	<a href="../views/deleteNewCar.php?id=<?=$row['id']?>" style="font-size: 20px; font-family: calibri; color: white; text-decoration: none;"> <b>DELETE</b> </a> 
 						</td>
 						
 					</tr>

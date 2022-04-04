@@ -1,17 +1,10 @@
 <?php 
 	require_once('header.php');
+	require('../models/newCars_tbl.php');
 
 	$id = $_GET['id'];
 
-	$file = fopen('../models/newCars.txt', 'r');
-
-	while (!feof($file)) {
-		$user = fgets($file);
-		$userArray = explode('|', $user);
-		if($userArray[1] == $id){
-			break;
-		}
-	}
+	$row = userInfo($id);
 ?>
 
 <!DOCTYPE html>
@@ -56,24 +49,26 @@
 						</tr>
 						<tr>
 							<td align="center">
+								<b style="font-size: 26px; font-family: calibri; color: white;">Id</b><br><hr>
 								<b style="font-size: 26px; font-family: calibri; color: white;">Name</b><br><hr>
 								<b style="font-size: 26px; font-family: calibri; color: white;">Seller</b><br><hr>
 								<b style="font-size: 26px; font-family: calibri; color: white;">Price</b><br><hr>
 								<b style="font-size: 26px; font-family: calibri; color: white;">Status</b><br><hr>
 							</td>
 							<td align="center">
-								<input type="text" name="name" value="<?=$userArray[0]?>" style="font-size: 22px; font-family: calibri;"/></b><br><hr>
-								<input type="text" name="seller" value="<?=$userArray[1]?>" style="font-size: 22px; font-family: calibri;"/></b><br><hr>
-								<input type="text" name="price" value="<?=$userArray[2]?>" style="font-size: 22px; font-family: calibri;"/></b><br><hr>
+								<b style="font-size: 26px; font-family: calibri; color: white;"><?=$row['id']?></b><br><hr>
+								<input type="text" name="name" value="<?=$row['name']?>" style="font-size: 22px; font-family: calibri;"/></b><br><hr>
+								<input type="text" name="seller" value="<?=$row['seller']?>" style="font-size: 22px; font-family: calibri;"/></b><br><hr>
+								<input type="text" name="price" value="<?=$row['price']?>" style="font-size: 22px; font-family: calibri;"/></b><br><hr>
 
-								<input type="radio" name="status" value="Active"<?php if(trim($userArray[4]) == "Active") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Active</b>
-								<input type="radio" name="status" value="Block"<?php if(trim($userArray[4]) == "Block") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Block</b><hr>
+								<input type="radio" name="status" value="Active"<?php if($row['status'] == "Active") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Active</b>
+								<input type="radio" name="status" value="Block"<?php if($row['status'] == "Block") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Block</b><hr>
 							</td>
 							<td valign="Top" align="right">
-								<img src="../assets/<?=$userArray[3]?>" width="200px" height="240px"><br>
-								<b style="font-size: 20px; font-family: calibri; color: white;"><?=$userArray[3]?></b>
+								<img src="../assets/<?=$row['picture']?>" width="200px" height="240px"><br>
+								<b style="font-size: 20px; font-family: calibri; color: white;"><?=$row['picture']?></b>
 								<p align="right"><input type="file" name="pic" style="color: white; font-size: 12px;"></p>
-								<input type="hidden" name="p" value="<?=$userArray[3]?>">
+								<input type="hidden" name="p" value="<?=$row['picture']?>">
 							</td>
 						</tr>
 						<tr>

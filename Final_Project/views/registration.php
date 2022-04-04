@@ -37,7 +37,7 @@
 								<b style="font-size: 25px; font-family: calibri; color: white;">Name :</b>
 							</td>
 							<td>
-								<input type="text" name="name" value=""/>
+								<input id="name" type="text" name="name" value="" onblur="name()" />
 							</td>
 						</tr>
 						<tr align="center">
@@ -45,7 +45,7 @@
 								<b style="font-size: 25px; font-family: calibri; color: white;">Email :</b>
 							</td>
 							<td>
-								<input type="email" name="email" value=""/>
+								<input id="mail" type="email" name="email" value="" onblur="email()" />
 							</td>
 						</tr>
 						<tr align="center">
@@ -53,7 +53,7 @@
 								<b style="font-size: 25px; font-family: calibri; color: white;">Username :</b>
 							</td>
 							<td>
-								<input type="text" name="username" value=""/>
+								<input id="user" type="text" name="username" value="" onblur="user()" />
 							</td>
 						</tr>
 						<tr align="center">
@@ -61,7 +61,7 @@
 								<b style="font-size: 25px; font-family: calibri; color: white;">Password :</b>
 							</td>
 							<td>
-								<input type="password" name="password" value=""/>
+								<input id="pass" type="password" name="password" value="" onblur="password()" />
 							</td>
 						</tr>
 						<tr align="center">
@@ -69,7 +69,7 @@
 								<b style="font-size: 25px; font-family: calibri; color: white;">Confirm Password :</b>
 							</td>
 							<td>
-								<input type="password" name="confirmPass" value=""/>
+								<input id="con" type="password" name="confirmPass" value="" onblur="conpass()" />
 							</td>
 						</tr>
 						<tr align="center">
@@ -87,7 +87,7 @@
 								<b style="font-size: 25px; font-family: calibri; color: white;">Date of Birth :</b>
 							</td>
 							<td>
-								<input type="date" name="date" value=""/>
+								<input id="date" type="date" name="date" value=""/>
 							</td>
 						</tr>
 						<tr>
@@ -95,7 +95,7 @@
 								<b style="font-size: 25px; font-family: calibri; color: white;">Profile Picture :</b>
 							</td>
 							<td align="right">
-								<input type="file" name="pic" style="color: white;">
+								<input id="pic" type="file" name="pic" style="color: white;">
 							</td>
 						</tr>
 						<tr>
@@ -137,5 +137,38 @@
 			</td>
 		</tr>
 	</table>
+	<script>
+		function name(){
+			let name = document.getElementById('name').value;
+			if (name == "") {
+				alert("Please enter your name");
+			}
+		}
+		function email() {
+			let email = document.getElementById('mail').value;
+			if (email == "") {
+				alert("Please enter your email");
+			}
+		}
+		function user(){
+			let user = document.getElementById('user').value;
+			if (user == "") {
+				alert("Please enter your username");
+			}
+		}
+		function password(){
+			let password = document.getElementById('pass').value;
+			if (password == "") {
+				alert("Please enter your password");
+			}
+		}
+		function conpass(){
+			let password = document.getElementById('pass').value;
+			let con = document.getElementById('con').value;
+			if (password == "" || password != con) {
+				alert("Please enter your password again");
+			}
+		}
+	</script>
 </body>
 </html>

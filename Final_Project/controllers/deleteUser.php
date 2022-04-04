@@ -1,5 +1,6 @@
 <?php 
 	session_start();
+	require('../models/users_tbl.php');
 	
 	if(isset($_REQUEST['yes'])){
 		
@@ -44,21 +45,7 @@
 
 		if($name != null && $email != null && $username != null && $password != null && $date != null){
 			
-			$file = fopen('../models/users.txt', 'r');
-			$updatedContent = "";
-
-			while(!feof($file)){
-				$line = fgets($file);
-				$user = explode('|', $line);
-				
-				if($user[1] != $id){
-					$updatedContent .= $line;
-				}
-
-			}
-
-			$file = fopen('../models/users.txt', 'w');
-			fwrite($file, $updatedContent);
+			deleteUser($username);
 			header('location: ../views/users.php');
 
 		}else{

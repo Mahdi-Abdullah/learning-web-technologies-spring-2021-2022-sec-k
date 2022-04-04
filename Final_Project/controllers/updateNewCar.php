@@ -1,5 +1,7 @@
 <?php 
 	session_start();
+	require('../models/newCars_tbl.php');
+	
 	
 	if(isset($_REQUEST['update'])){
 		
@@ -29,22 +31,8 @@
 
 		if($name != null && $seller != null && $price != null){
 			
-			$file = fopen('../models/newCars.txt', 'r');
-			$updatedContent = "";
+			editCar($id, $name, $seller, $price, $picture, $status);
 
-			while(!feof($file)){
-				$line = fgets($file);
-				$user = explode('|', $line);
-				
-				if($user[1] == $id){
-					$line = $name."|".$seller."|".$price."|".$picture."|".$status."\r\n";
-				}
-				$updatedContent .= $line;
-				
-			}
-
-			$file = fopen('../models/newCars.txt', 'w');
-			fwrite($file, $updatedContent);
 			header('location: ../views/newCarsAdmin.php');
 
 		}else{

@@ -1,5 +1,6 @@
 <?php 
 	session_start();
+	require('../models/oldCars_tbl.php');
 	
 	if(isset($_REQUEST['yes'])){
 		
@@ -29,20 +30,7 @@
 
 		if($name != null && $seller != null && $price != null){
 			
-			$file = fopen('../models/oldCars.txt', 'r');
-			$updatedContent = "";
-
-			while(!feof($file)){
-				$line = fgets($file);
-				$user = explode('|', $line);
-				
-				if($user[1] != $id){
-					$updatedContent .= $line;
-				}
-			}
-
-			$file = fopen('../models/oldCars.txt', 'w');
-			fwrite($file, $updatedContent);
+			deleteCar($id);
 			header('location: ../views/oldCarsAdmin.php');
 
 		}else{
