@@ -5,7 +5,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>CarLagbe Homepage</title>
+	<title>CarLagbe Admin page</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 	<table width="1570" cellspacing="0" bgcolor="E0DDAA">
@@ -37,7 +38,7 @@
 				
 			</td>
 			<td bgcolor="141E27" valign="Top">
-				<table width="710px" align="center">
+				<table width="710px" align="center" class="table">
 					<tr>
 						<td colspan="3" align="center">
 							<b style="font-size: 35px; font-family: calibri; color: white;">Profile<br> <hr></b>
@@ -69,7 +70,7 @@
 					</tr>
 					<tr>
 						<td colspan="3" align="center">
-							<br><a href="../views/EditProfile.php?id=<?=$_SESSION['current_user']['username']?>"><input type="submit" name="submit" value="Edit Profile" style="font-size: 25px;"></a>
+							<br><a href="../views/EditProfile.php?id=<?=$_SESSION['current_user']['username']?>"><input type="submit" name="submit" value="Edit Profile" class="btn" style="font-size: 25px;"></a>
 						</td>
 					</tr>
 				</table>

@@ -12,6 +12,7 @@
 <html>
 <head>
 	<title>CarLagbe Edit User</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 	<table width="1570" cellspacing="0" bgcolor="E0DDAA">
@@ -40,7 +41,7 @@
 		</tr>
 		<tr height="750px" bgcolor="203239">
 			<td bgcolor="141E27" valign="Top" colspan="3">
-				<form method="POST" action="../controllers/updateOldCar.php" enctype="multipart/form-data">
+				<form method="POST" action="../controllers/updateOldCar.php" enctype="multipart/form-data" onsubmit="return formVarification()">
 					<input type="hidden" name="id" value="<?=$id?>"/>
 					<table width="1050px" align="center" >
 						<tr>
@@ -58,12 +59,12 @@
 							</td>
 							<td align="center">
 								<b style="font-size: 26px; font-family: calibri; color: white;"><?=$row['id']?></b><br><hr>
-								<input type="text" name="name" value="<?=$row['name']?>" style="font-size: 22px; font-family: calibri;"/></b><br><hr>
-								<input type="text" name="seller" value="<?=$row['seller']?>" style="font-size: 22px; font-family: calibri;"/></b><br><hr>
-								<input type="text" name="price" value="<?=$row['price']?>" style="font-size: 22px; font-family: calibri;"/></b><br><hr>
+								<input id="a" type="text" name="name" value="<?=$row['name']?>" style="font-size: 22px; font-family: calibri;"/></b><br><hr>
+								<input id="b" type="text" name="seller" value="<?=$row['seller']?>" style="font-size: 22px; font-family: calibri;"/></b><br><hr>
+								<input id="c" type="text" name="price" value="<?=$row['price']?>" style="font-size: 22px; font-family: calibri;"/></b><br><hr>
 
-								<input type="radio" name="status" value="Active"<?php if($row['status'] == "Active") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Active</b>
-								<input type="radio" name="status" value="Block"<?php if($row['status'] == "Block") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Block</b><hr>
+								<input id="active" type="radio" name="status" value="Active"<?php if($row['status'] == "Active") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Active</b>
+								<input id="block" type="radio" name="status" value="Block"<?php if($row['status'] == "Block") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Block</b><hr>
 							</td>
 							<td valign="Top" align="right">
 								<img src="../assets/<?=$row['picture']?>" width="200px" height="240px"><br>
@@ -74,7 +75,7 @@
 						</tr>
 						<tr>
 							<td colspan="3" align="center">
-								<br><input type="submit" name="update" value="Update" style="font-size: 25px;"/></a> <input type="reset" name="reset" value="Reset" style="font-size: 25px;" /> <br>
+								<br><input type="submit" name="update" value="Update" style="font-size: 25px;" class="btn" /></a> <input type="reset" name="reset" value="Reset" style="font-size: 25px;" class="btn" /> <br>
 							</td>
 						</tr>
 					</table>
@@ -96,5 +97,30 @@
 			</td>
 		</tr>
 	</table>
+	<script>
+		function formVarification(){
+
+			let name = document.getElementById('a').value;
+			let seller = document.getElementById('b').value;
+			let price = document.getElementById('c').value;
+			
+
+			if (name == "") {
+				alert("Please enter your name"); return false;
+			}
+			else if (seller == "") {
+				alert("Please enter seller"); return false;
+			}
+			else if (price == "") {
+				alert("Please enter the price"); return false;
+			}
+			else if (document.getElementById('active').checked == false && document.getElementById('block').checked == false) {
+				alert("Please select your gender"); return false;
+			}
+			else {
+				return true;
+			}
+		}
+	</script>
 </body>
 </html>

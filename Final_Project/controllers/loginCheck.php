@@ -2,10 +2,14 @@
 	session_start();
 	require('../models/users_tbl.php');
 
-	if(isset($_REQUEST['submit'])){
+	if(isset($_REQUEST['data'])){
+
+		$json = json_decode($_REQUEST['data']);
 		
-		$username = $_REQUEST['username'];
-		$password = $_REQUEST['password'];
+		$username = $json->username;
+		$password = $json->password;
+		$chek = $json->remember_me;
+
 
 		if($username != null && $password != null) {
 				
@@ -13,11 +17,13 @@
 					if (userInfo($username)['Status'] == "Active") {
 
 						if (userInfo($username)['Account_Type'] == 'admin') {
-							$_SESSION['status'] = true;
-							$_SESSION['current_user'] = userInfo($username);
-							setcookie('status', 'true', time()+3600, '/');
+							if (!empty($chek)) {
+								$_SESSION['status'] = true;
+								$_SESSION['current_user'] = userInfo($username);
+								setcookie('status', 'true', time()+3600, '/');
+							}
 
-							header('location: ../views/profile_Admin.php');
+							echo 'http://localhost/WebTech/Final_Project/views/profile_Admin.php';
 						}
 						else if (userInfo($username)['Account_Type'] == 'customer') {
 							$_SESSION['status'] = true;
@@ -41,14 +47,14 @@
 							header('location: ../views/profile_Customer_Service.php');
 						}
 					}else{
-						echo "Your account is blocked! or ";
+						echo "Acoount blocked";
 					}
+				}else{
+					echo "Invalid username/password";
 				}
 
-			echo "invalid username/password";
-
 		}else{
-			echo "null submission";
+			echo "Null submition";
 		}
 	}
 ?>

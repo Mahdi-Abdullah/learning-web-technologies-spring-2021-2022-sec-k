@@ -7,6 +7,7 @@
 <html>
 <head>
 	<title>CarLagbe Homepage</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 	<table width="1570" cellspacing="0" bgcolor="E0DDAA">
@@ -35,7 +36,7 @@
 		</tr>
 		<tr height="611px">
 			<td bgcolor="141E27" valign="Top" colspan="3">
-				<table width="1500px" align="center" border="1">
+				<table width="1500px" align="center" border="1" class="table">
 					<tr align="center">
 						<td colspan="10"><b style="font-size: 35px; font-family: calibri; color: white;">New Car <br> <hr></b></td>
 					</tr>
@@ -62,8 +63,8 @@
 						<td><?=$row['picture']?></td>
 						<td><?=$row['status']?></td>
 						<td>
-							<a href="../views/editNewCar.php?id=<?=$row['id']?>" style="font-size: 20px; font-family: calibri; color: white; text-decoration: none;"> <b>EDIT</b> </a> | 
-					    	<a href="../views/deleteNewCar.php?id=<?=$row['id']?>" style="font-size: 20px; font-family: calibri; color: white; text-decoration: none;"> <b>DELETE</b> </a> 
+							<a href="../views/editNewCar.php?id=<?=$row['id']?>" style="font-size: 20px; font-family: calibri; color: white; text-decoration: none;"> <input type="button" name="" value="EDIT" class="btn"> </a> | 
+					    	<a href="../views/deleteNewCar.php?id=<?=$row['id']?>" style="font-size: 20px; font-family: calibri; color: white; text-decoration: none;"> <input type="button" name="" value="DELETE" class="btn"> </a> 
 						</td>
 						
 					</tr>
@@ -71,6 +72,9 @@
 					<?php
 						}
 					?>
+					<tr>
+						
+					</tr>
 
 				</table>
 			</td>

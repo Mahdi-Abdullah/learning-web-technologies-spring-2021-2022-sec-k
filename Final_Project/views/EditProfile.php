@@ -43,7 +43,7 @@
 				
 			</td>
 			<td bgcolor="141E27" valign="Top">
-				<form method="POST" action="../controllers/update.php" enctype="multipart/form-data">
+				<form method="POST" action="../controllers/update.php" enctype="multipart/form-data" onsubmit="return formVarification()">
 					<input type="hidden" name="id" value="<?=$id?>"/>
 					<table width="870px" align="center" >
 						<tr>
@@ -62,26 +62,26 @@
 								<b style="font-size: 26px; font-family: calibri; color: white;">Account Type</b><br><hr>
 							</td>
 							<td align="center">
-								<input type="text" name="name" value="<?=$row['name']?>" style="font-size: 22px; font-family: calibri;"/></b><br><hr>
-								<input type="text" name="username" value="<?=$row['username']?>" style="font-size: 22px; font-family: calibri;"/></b><br><hr>
-								<input type="email" name="email" value="<?=$row['email']?>" style="font-size: 22px; font-family: calibri;"/></b><br><hr>
-								<input type="password" name="password" value="<?=$row['password']?>" style="font-size: 22px; font-family: calibri;"/></b><br><hr>
+								<input id="a" type="text" name="name" value="<?=$row['name']?>" style="font-size: 22px; font-family: calibri;"/></b><br><hr>
+								<input id="b" type="text" name="username" value="<?=$row['username']?>" style="font-size: 22px; font-family: calibri;"/></b><br><hr>
+								<input id="c"type="email" name="email" value="<?=$row['email']?>" style="font-size: 22px; font-family: calibri;"/></b><br><hr>
+								<input id="d"type="password" name="password" value="<?=$row['password']?>" style="font-size: 22px; font-family: calibri;"/></b><br><hr>
 
-								<input type="radio" name="gender" value="Male"<?php if($row['gender'] == "Male") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Male</b>
-								<input type="radio" name="gender" value="Female"<?php if($row['gender'] == "Female") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Female</b>
-								<input type="radio" name="gender" value="Other" <?php if($row['gender'] == "Other") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Other</b><br><hr>
+								<input id="male" type="radio" name="gender" value="Male"<?php if($row['gender'] == "Male") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Male</b>
+								<input id="female" type="radio" name="gender" value="Female"<?php if($row['gender'] == "Female") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Female</b>
+								<input id="other" type="radio" name="gender" value="Other" <?php if($row['gender'] == "Other") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Other</b><br><hr>
 
-								<input type="date" name="date" value="<?=$row['DOB']?>" style="font-size: 22px; font-family: calibri;"/></b><br><hr>
+								<input id="e" type="date" name="date" value="<?=$row['DOB']?>" style="font-size: 22px; font-family: calibri;"/></b><br><hr>
 
-								<input type="radio" name="accType" value="admin"<?php if($row['Account_Type'] == "admin") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Admin</b>
-								<input type="radio" name="accType" value="customer"<?php if($row['Account_Type'] == "customer") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Customer</b>
-								<input type="radio" name="accType" value="seller"<?php if($row['Account_Type'] == "seller") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Seller</b>
-								<input type="radio" name="accType" value="customer service"<?php if($row['Account_Type'] == "customer service") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Seller service</b><hr>
+								<input id="admn" type="radio" name="accType" value="admin"<?php if($row['Account_Type'] == "admin") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Admin</b>
+								<input id="cstmer" type="radio" name="accType" value="customer"<?php if($row['Account_Type'] == "customer") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Customer</b>
+								<input id="sell" type="radio" name="accType" value="seller"<?php if($row['Account_Type'] == "seller") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Seller</b>
+								<input id="cusServ" type="radio" name="accType" value="customer service"<?php if($row['Account_Type'] == "customer service") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Customer service</b><hr>
 							</td>
 							<td valign="Top" align="right">
 								<img src="../assets/<?=$row['Picture']?>" width="200px" height="240px"><br>
 								<b style="font-size: 20px; font-family: calibri; color: white;"><?=$row['Picture']?></b>
-								<p align="right"><input type="file" name="pic" style="color: white; font-size: 12px;"></p>
+								<p align="right"><input id="pics" type="file" name="pic" value="<?=$row['Picture']?>" style="color: white; font-size: 12px;"></p>
 								<input type="hidden" name="p" value="<?=$row['Picture']?>">
 							</td>
 						</tr>
@@ -112,5 +112,41 @@
 			</td>
 		</tr>
 	</table>
+	<script>
+		function formVarification(){
+
+			let name = document.getElementById('a').value;
+			let email = document.getElementById('c').value;
+			let user = document.getElementById('b').value;
+			let password = document.getElementById('d').value;
+			let dob = document.getElementById('e').value;
+			
+
+			if (name == "") {
+				alert("Please enter your name"); return false;
+			}
+			else if (email == "") {
+				alert("Please enter your email"); return false;
+			}
+			else if (user == "") {
+				alert("Please enter your username"); return false;
+			}
+			else if (password == "") {
+				alert("Please enter a password"); return false;
+			}
+			else if (document.getElementById('male').checked == false && document.getElementById('female').checked == false && document.getElementById('other').checked == false) {
+				alert("Please select your gender"); return false;
+			}
+			else if (dob == "") {
+				alert("Please enter your date of birth"); return false;
+			}
+			else if (document.getElementById('admn').checked == false && document.getElementById('cstmer').checked == false && document.getElementById('sell').checked == false && document.getElementById('cusServ').checked == false) {
+				alert("Please select an account type"); return false;
+			}
+			else {
+				return true;
+			}
+		}
+	</script>
 </body>
 </html>

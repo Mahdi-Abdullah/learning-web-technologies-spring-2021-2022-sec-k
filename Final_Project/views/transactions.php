@@ -1,5 +1,6 @@
 <?php 
 	require_once('header.php');
+	require('../models/transactions_tbl.php');
 ?>
 
 <!DOCTYPE html>
@@ -32,15 +33,40 @@
 				<img src="../assets/6.jpg" alt="Car Image" width="1570" height="250">
 			</td>
 		</tr>
-		<tr height="611px" bgcolor="203239">
-			<td width="270px">
-				
-			</td>
-			<td bgcolor="141E27" valign="Top">
-				
-			</td>
-			<td  width="270px" valign="Top">
-				
+		<tr height="611px">
+			<td bgcolor="141E27" valign="Top" colspan="3">
+				<table width="1500px" align="center" border="1">
+					<tr align="center">
+						<td colspan="10"><b style="font-size: 35px; font-family: calibri; color: white;">Transactions <br> <hr></b></td>
+					</tr>
+					<tr>
+						<td><b style="font-size: 25px; font-family: calibri; color: white;">Id</b><br></td>
+						<td><b style="font-size: 25px; font-family: calibri; color: white;">Seller</b><br></td>
+						<td><b style="font-size: 25px; font-family: calibri; color: white;">Customer</b><br></td>
+						<td><b style="font-size: 25px; font-family: calibri; color: white;">Total Amount</b><br></td>
+						<td><b style="font-size: 25px; font-family: calibri; color: white;">Amount Paid</b><br></td>
+						<td><b style="font-size: 25px; font-family: calibri; color: white;">Date</b><br></td>
+					</tr>
+
+					<?php 
+						$result = getAlltrans();
+						 while ($row = mysqli_fetch_assoc($result)) {
+					?>
+
+					<tr style="font-size: 20px; font-family: calibri; color: white;">
+						<td><?=$row['id']?></td>
+						<td><?=$row['seller']?></td>
+						<td><?=$row['customer']?></td>
+						<td><?=$row['total_amount']?></td>
+						<td><?=$row['amount_paid']?></td>
+						<td><?=$row['date']?></td>
+					</tr>
+
+					<?php
+						}
+					?>
+
+				</table>
 			</td>
 		</tr>
 		<tr height="40px">

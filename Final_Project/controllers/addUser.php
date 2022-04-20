@@ -2,13 +2,12 @@
 	session_start();
 	require('../models/users_tbl.php');
 	
-	if(isset($_REQUEST['update'])){
+	if(isset($_REQUEST['submit'])){
 		
 		$name = $_REQUEST['name'];
 		$email = $_REQUEST['email'];
 		$username = $_REQUEST['username'];
 		$password = $_REQUEST['password'];
-		$id = $_REQUEST['id'];
 
 		if (empty($_REQUEST['gender'])) {
 			echo "Gender is not selected.". "<br>";
@@ -18,17 +17,12 @@
 
 		$date = $_REQUEST['date'];
 		
-		if ($_FILES['pic']['size'] == 0 && $_REQUEST['p'] == "") {
+		if ($_FILES['pic']['size'] == 0) {
 			echo "Profile picture is not selected.". "<br>";
-		}
-		elseif ($_FILES['pic']['size'] == 0 && $_REQUEST['p'] != "") {
-			$picture = $_REQUEST['p'];
-		}
-		else{
+		}else{
 			$src = $_FILES['pic']['tmp_name'];
 			$des = "../assets/".$_FILES['pic']['name'];
 			move_uploaded_file($src, $des);
-			$picture = $_FILES['pic']['name'];
 		}
 
 		if (empty($_REQUEST['accType'])) {
@@ -38,18 +32,20 @@
 		}
 
 		if (empty($_REQUEST['status'])) {
-			echo "status is not selected.". "<br>";
+			echo "Status is not selected.". "<br>";
 		}else{
 			$status = $_REQUEST['status'];
 		}
 
 		if($name != null && $email != null && $username != null && $password != null && $date != null){
+			if (isUserTaken($username) == true) {
+					register($name, $username, $email, $password, $gender, $date, $accountType, $_FILES['pic']['name'], $status);
+					header('location: ../views/users.php');
+				}else{
+					echo "This username is taken";
+			}
 			
-			editUser($name, $username, $email, $password, $gender, $date, $accountType, $picture, $status);
-			header('location: ../views/users.php');
-
 		}else{
 			echo "null submission";
 		}
 	}
-?>

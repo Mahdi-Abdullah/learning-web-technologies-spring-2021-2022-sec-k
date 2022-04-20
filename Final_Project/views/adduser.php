@@ -1,10 +1,6 @@
 <?php 
 	require_once('header.php');
 	require('../models/users_tbl.php');
-
-	$id = $_GET['id'];
-
-	$row = userInfo($id);
 ?>
 
 <!DOCTYPE html>
@@ -40,12 +36,12 @@
 		</tr>
 		<tr height="750px" bgcolor="203239">
 			<td bgcolor="141E27" valign="Top" colspan="3">
-				<form method="POST" action="../controllers/updateUser.php" enctype="multipart/form-data" onsubmit="return formVarification()">
+				<form method="POST" action="../controllers/addUser.php" enctype="multipart/form-data" onsubmit="return formVarification()">
 					<input type="hidden" name="id" value="<?=$id?>"/>
 					<table width="1050px" align="center" >
 						<tr>
 							<td colspan="3" align="center">
-								<b style="font-size: 35px; font-family: calibri; color: white;">Edit User<br> <hr></b>
+								<b style="font-size: 35px; font-family: calibri; color: white;">Add User<br> <hr></b>
 							</td>
 						</tr>
 						<tr>
@@ -58,37 +54,33 @@
 								<b style="font-size: 26px; font-family: calibri; color: white;">Date of Birth</b><br><hr>
 								<b style="font-size: 26px; font-family: calibri; color: white;">Account Type</b><br><hr>
 								<b style="font-size: 26px; font-family: calibri; color: white;">Status</b><br><hr>
+								<b style="font-size: 26px; font-family: calibri; color: white;">Profile Picture</b><br><hr>
 							</td>
 							<td align="center">
-								<input id="a" type="text" name="name" value="<?=$row['name']?>" style="font-size: 22px; font-family: calibri;"/></b><br><hr>
-								<input id="b" type="text" name="username" value="<?=$row['username']?>" style="font-size: 22px; font-family: calibri;"/></b><br><hr>
-								<input id="c"type="email" name="email" value="<?=$row['email']?>" style="font-size: 22px; font-family: calibri;"/></b><br><hr>
-								<input id="d"type="password" name="password" value="<?=$row['password']?>" style="font-size: 22px; font-family: calibri;"/></b><br><hr>
+								<input id="a" type="text" name="name" value="" style="font-size: 22px; font-family: calibri;"/></b><br><hr>
+								<input id="b" type="text" name="username" value="" style="font-size: 22px; font-family: calibri;"/></b><br><hr>
+								<input id="c"type="email" name="email" value="" style="font-size: 22px; font-family: calibri;"/></b><br><hr>
+								<input id="d"type="password" name="password" value="" style="font-size: 22px; font-family: calibri;"/></b><br><hr>
 
-								<input id="male" type="radio" name="gender" value="Male"<?php if($row['gender'] == "Male") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Male</b>
-								<input id="female" type="radio" name="gender" value="Female"<?php if($row['gender'] == "Female") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Female</b>
-								<input id="other" type="radio" name="gender" value="Other" <?php if($row['gender'] == "Other") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Other</b><br><hr>
+								<input id="male" type="radio" name="gender" value="Male"/> <b style="font-size: 25px; font-family: calibri; color: white;">Male</b>
+								<input id="female" type="radio" name="gender" value="Female"/> <b style="font-size: 25px; font-family: calibri; color: white;">Female</b>
+								<input id="other" type="radio" name="gender" value="Other" /> <b style="font-size: 25px; font-family: calibri; color: white;">Other</b><br><hr>
 
-								<input id="e" type="date" name="date" value="<?=$row['DOB']?>" style="font-size: 22px; font-family: calibri;"/></b><br><hr>
+								<input id="e" type="date" name="date" value="" style="font-size: 22px; font-family: calibri;"/></b><br><hr>
 
-								<input id="admn" type="radio" name="accType" value="admin"<?php if($row['Account_Type'] == "admin") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Admin</b>
-								<input id="cstmer" type="radio" name="accType" value="customer"<?php if($row['Account_Type'] == "customer") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Customer</b>
-								<input id="sell" type="radio" name="accType" value="seller"<?php if($row['Account_Type'] == "seller") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Seller</b>
-								<input id="cusServ" type="radio" name="accType" value="customer service"<?php if($row['Account_Type'] == "customer service") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Customer service</b><hr>
+								<input id="admn" type="radio" name="accType" value="admin"/> <b style="font-size: 25px; font-family: calibri; color: white;">Admin</b>
+								<input id="cstmer" type="radio" name="accType" value="customer"/> <b style="font-size: 25px; font-family: calibri; color: white;">Customer</b>
+								<input id="sell" type="radio" name="accType" value="seller"/> <b style="font-size: 25px; font-family: calibri; color: white;">Seller</b>
+								<input id="cusServ" type="radio" name="accType" value="customer service"/> <b style="font-size: 25px; font-family: calibri; color: white;">Customer service</b><hr>
 
-								<input id="active" type="radio" name="status" value="Active"<?php if($row['Status'] == "Active") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Active</b>
-								<input id="block" type="radio" name="status" value="Block"<?php if($row['Status'] == "Block") { echo "checked";}?>/> <b style="font-size: 25px; font-family: calibri; color: white;">Block</b><hr>
-							</td>
-							<td valign="Top" align="right">
-								<img src="../assets/<?=$row['Picture']?>" width="200px" height="240px"><br>
-								<b style="font-size: 20px; font-family: calibri; color: white;"><?=$row['Picture']?></b>
-								<p align="right"><input type="file" name="pic" style="color: white; font-size: 12px;"></p>
-								<input type="hidden" name="p" value="<?=$row['Picture']?>">
+								<input id="active" type="radio" name="status" value="Active"/> <b style="font-size: 25px; font-family: calibri; color: white;">Active</b>
+								<input id="block" type="radio" name="status" value="Block"/> <b style="font-size: 25px; font-family: calibri; color: white;">Block</b><hr>
+								<input id="pics" type="file" name="pic" style="color: white; font-size: 20px;"></b><hr>
 							</td>
 						</tr>
 						<tr>
 							<td colspan="3" align="center">
-								<br><a href="../views/EditProfile.php"><input type="submit" name="update" value="Update" style="font-size: 25px;" class="btn" /></a> <input type="reset" name="reset" value="Reset" style="font-size: 25px;" class="btn" /> <br>
+								<br><input type="submit" name="submit" value="submit" style="font-size: 25px;" class="btn" /> <input type="reset" name="reset" value="Reset" style="font-size: 25px;" class="btn" /> <br>
 							</td>
 						</tr>
 					</table>
@@ -143,6 +135,9 @@
 			}
 			else if (document.getElementById('active').checked == false && document.getElementById('block').checked == false) {
 				alert("Please select your gender"); return false;
+			}
+			else if (document.getElementById('pics').value == "") {
+				alert("Please uplode a picture"); return false;
 			}
 			else {
 				return true;

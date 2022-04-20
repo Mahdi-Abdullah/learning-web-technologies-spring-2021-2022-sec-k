@@ -10,7 +10,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>CarLagbe Edit User</title>
+	<title>CarLagbe Edit Car</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 	<table width="1570" cellspacing="0" bgcolor="E0DDAA">
@@ -45,7 +46,7 @@
 						<tr>
 							<td colspan="3" align="center">
 								<b style="font-size: 35px; font-family: calibri; color: white;">Are you sure you want to delete this account?</b><br>
-								<input type="submit" name="yes" value="Yes" style="font-size: 25px;"/> <a href="../views/oldCarsAdmin.php"><input type="button" name="yes" value="No" style="font-size: 25px;"/></a><br><hr>
+								<input type="submit" name="yes" value="Yes" style="font-size: 25px;" class="btn" /> <a href="../views/oldCarsAdmin.php"><input type="button" name="yes" value="No" style="font-size: 25px;" class="btn" /></a><br><hr>
 							</td>
 						</tr>
 						<tr>
